@@ -56,8 +56,8 @@
   }
 </script>
 
-<aside class="h-screen bg-sidebar flex flex-col border-r border-sidebar-border transition-all duration-300 w-64" aria-label="Main navigation">
-  <div class="p-8 border-b border-sidebar-border flex items-center justify-between">
+<aside class="h-screen bg-sidebar flex flex-col border-r border-sidebar-border transition-all duration-300 w-64 items-center" aria-label="Main navigation">
+  <div class="p-4 border-b border-sidebar-border flex items-center justify-between">
     <h1 class="text-xl font-semibold text-sidebar-foreground flex items-center gap-3">
       <div class="hover">
         <img src="/main-icon.svg" alt="Library icon" class="h-24 mx-auto rounded-xl max-md:h-[48px] h-[50px] svelte-13cngne" />
