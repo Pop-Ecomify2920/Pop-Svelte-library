@@ -138,14 +138,14 @@ style={`background-image: url('${bgUrl}'); background-size: cover; background-po
 
             {#if mode === 'signup'}
               <div class="space-y-2 animate-fade-in">
-                <label for="name" class="text-sm font-medium text-foreground/80">
-                  Full name
+                <label for="name" class="text-sm font-medium text-foreground/80 mr-2">
+                  Full name : 
                 </label>
                 <input
                   id="name"
                   type="text"
                   bind:value={name}
-                  class="auth-input"
+                  class="auth-input p-2 text-center"
                   placeholder="Enter your full name"
                   aria-label="Full name"
                   autocomplete="name"

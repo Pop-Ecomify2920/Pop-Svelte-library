@@ -27,6 +27,18 @@
   onMount(() => {
     updateSearchFromUrl()
 
+    // Restore viewer state from localStorage
+    const savedViewer = localStorage.getItem('photo-viewer-state')
+    if (savedViewer) {
+      try {
+        const { open, index } = JSON.parse(savedViewer)
+        if (open && allPhotos[index]) {
+          viewerOpen = true
+          currentPhotoIndex = index
+        }
+      } catch {}
+    }
+
     const handler = (event: Event) => {
       const custom = event as CustomEvent<string>
       searchQuery = custom.detail ?? ''
@@ -52,11 +64,22 @@
     return acc
   }, {})
 
+  $: {
+    // Persist viewer state
+    if (viewerOpen) {
+      localStorage.setItem('photo-viewer-state', JSON.stringify({ open: true, index: currentPhotoIndex }))
+    } else {
+      localStorage.removeItem('photo-viewer-state')
+    }
+  }
+
   function openViewer(photoId: number) {
     const idx = allPhotos.findIndex((p) => p.id === photoId)
     if (idx >= 0) {
       currentPhotoIndex = idx
       viewerOpen = true
+      // Save state immediately
+      localStorage.setItem('photo-viewer-state', JSON.stringify({ open: true, index: idx }))
     }
   }
 
@@ -237,8 +260,14 @@
     photos={allPhotos}
     isOpen={viewerOpen}
     currentIndex={currentPhotoIndex}
-    onClose={() => (viewerOpen = false)}
-    onNavigate={(idx) => (currentPhotoIndex = idx)}
+    onClose={() => {
+      viewerOpen = false
+      localStorage.removeItem('photo-viewer-state')
+    }}
+    onNavigate={(idx) => {
+      currentPhotoIndex = idx
+      localStorage.setItem('photo-viewer-state', JSON.stringify({ open: true, index: idx }))
+    }}
     onDelete={async (photoId) => {
       try {
         await photosStore.deletePhoto(photoId)
@@ -246,8 +275,10 @@
         const nextLen = allPhotos.length - 1
         if (nextLen <= 0) {
           viewerOpen = false
+          localStorage.removeItem('photo-viewer-state')
         } else if (currentPhotoIndex >= nextLen) {
           currentPhotoIndex = nextLen - 1
+          localStorage.setItem('photo-viewer-state', JSON.stringify({ open: true, index: currentPhotoIndex }))
         }
       } catch (e) {
         console.error('Failed to delete photo', e)
