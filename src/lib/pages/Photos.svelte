@@ -175,11 +175,11 @@
               </h2>
             </div>
 
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-1">
+            <div class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 gap-1">
               {#each photos as photo}
                 <button
                   type="button"
-                  class="relative group cursor-pointer overflow-hidden rounded-lg text-left"
+                  class="relative group cursor-pointer overflow-hidden text-left"
                   on:click={(e) => handleTileClick(photo.id, e)}
                   aria-label={`Open ${photo.alt}`}
                 >
@@ -201,11 +201,11 @@
                     class={`absolute top-2 left-2 w-6 h-6 rounded-full border-2 transition-all duration-200 flex items-center justify-center z-10 ${
                       isSelected(photo.id) ? 'bg-immich-primary border-immich-primary' : 'border-white/70 opacity-0 group-hover:opacity-100'
                     }`}
-                    on:click|stopPropagation={() => toggleSelect(photo.id)}
                     role="button"
                     tabindex="0"
                     aria-label={isSelected(photo.id) ? 'Deselect photo' : 'Select photo'}
                     aria-pressed={isSelected(photo.id)}
+                    on:click|stopPropagation={() => toggleSelect(photo.id)}
                     on:keydown|stopPropagation={(e) => {
                       const ev = e as KeyboardEvent
                       if (ev.key === 'Enter' || ev.key === ' ') {
@@ -234,19 +234,19 @@
         {selectedIds.length} selected
       </span>
       <div class="flex gap-2">
-        <button type="button" class="px-3 py-1.5 rounded-lg bg-secondary text-foreground hover:bg-accent text-sm" on:click={() => (selectedIds = [])}>
+        <button type="button" class="px-3 py-1.5    bg-secondary text-foreground hover:bg-accent text-sm" on:click={() => (selectedIds = [])}>
           Clear
         </button>
         <button
           type="button"
-          class="px-3 py-1.5 rounded-lg bg-secondary text-foreground hover:bg-accent text-sm"
+          class="px-3 py-1.5    bg-secondary text-foreground hover:bg-accent text-sm"
           on:click={openAddToAlbum}
         >
           Add to album
         </button>
         <button
           type="button"
-          class="px-3 py-1.5 rounded-lg bg-destructive text-destructive-foreground text-sm"
+          class="px-3 py-1.5    bg-destructive text-destructive-foreground text-sm"
           on:click={deleteSelected}
         >
           Delete
@@ -320,14 +320,14 @@
           <div class="mt-4 flex justify-end gap-2">
             <button
               type="button"
-              class="px-4 py-2 rounded-lg bg-secondary"
+              class="px-4 py-2    bg-secondary"
               on:click={() => (addToAlbumOpen = false)}
             >
               Cancel
             </button>
             <button
               type="button"
-              class="px-4 py-2 rounded-lg bg-immich-primary text-primary-foreground"
+              class="px-4 py-2    bg-immich-primary text-primary-foreground"
               on:click={confirmAddToAlbum}
             >
               Save

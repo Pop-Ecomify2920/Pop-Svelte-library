@@ -53,7 +53,7 @@
     <div class="px-4 py-4 md:px-6 md:py-6 space-y-6">
       <div class="flex items-center justify-between">
         <h1 class="text-2xl font-semibold text-immich-fg dark:text-immich-dark-fg">Albums</h1>
-        <button type="button" class="px-4 py-2 rounded-lg bg-immich-primary text-primary-foreground" on:click={openCreate}>
+        <button type="button" class="px-4 py-2    bg-immich-primary text-primary-foreground" on:click={openCreate}>
           Create album
         </button>
       </div>
@@ -94,12 +94,12 @@
               </div>
 
               <div class="flex gap-2">
-                <button type="button" class="px-3 py-1.5 rounded-lg bg-secondary text-foreground text-sm" on:click={() => openEdit(a)}>
+                <button type="button" class="px-3 py-1.5    bg-secondary text-foreground text-sm" on:click={() => openEdit(a)}>
                   Edit
                 </button>
                 <button
                   type="button"
-                  class="px-3 py-1.5 rounded-lg bg-destructive text-destructive-foreground text-sm"
+                  class="px-3 py-1.5    bg-destructive text-destructive-foreground text-sm"
                   on:click={() => deleteAlbum(a.id)}
                 >
                   Delete
@@ -129,8 +129,8 @@
             </div>
           </div>
           <div class="mt-6 flex justify-end gap-2">
-            <button type="button" class="px-4 py-2 rounded-lg bg-secondary" on:click={() => (createOpen = false)}>Cancel</button>
-            <button type="button" class="px-4 py-2 rounded-lg bg-immich-primary text-primary-foreground" on:click={submitCreate}>
+            <button type="button" class="px-4 py-2    bg-secondary" on:click={() => (createOpen = false)}>Cancel</button>
+            <button type="button" class="px-4 py-2    bg-immich-primary text-primary-foreground" on:click={submitCreate}>
               Create
             </button>
           </div>
@@ -156,8 +156,8 @@
             </div>
           </div>
           <div class="mt-6 flex justify-end gap-2">
-            <button type="button" class="px-4 py-2 rounded-lg bg-secondary" on:click={() => (editOpen = false)}>Cancel</button>
-            <button type="button" class="px-4 py-2 rounded-lg bg-immich-primary text-primary-foreground" on:click={submitEdit}>
+            <button type="button" class="px-4 py-2    bg-secondary" on:click={() => (editOpen = false)}>Cancel</button>
+            <button type="button" class="px-4 py-2    bg-immich-primary text-primary-foreground" on:click={submitEdit}>
               Save
             </button>
           </div>
